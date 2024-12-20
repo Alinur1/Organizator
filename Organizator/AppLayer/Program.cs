@@ -1,3 +1,8 @@
+using BLL.Interfaces;
+using BLL.Services;
+using DAL.DataAccess;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +11,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+var connectionString = builder.Configuration.GetConnectionString("MyConnection");
+builder.Services.AddDbContext<AppDataContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<IUsers, UsersService>();
 
 var app = builder.Build();
 
