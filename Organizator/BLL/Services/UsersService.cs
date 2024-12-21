@@ -21,6 +21,7 @@ namespace BLL.Services
 
         public async Task<Users> AddUsersAsync(Users users)
         {
+            users.CreatedAt = DateTime.UtcNow;
             await _context.User.AddAsync(users);
             await _context.SaveChangesAsync();
             return users;

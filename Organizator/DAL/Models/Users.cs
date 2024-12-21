@@ -30,7 +30,6 @@ namespace DAL.Models
         public string Role { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string CreatedAt { get; set; } = DateTime.UtcNow.ToString("MM/dd/yyyy HH:mm:ss");
+        public DateTime CreatedAt { get; set; }
     }
 }
